@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
+import Pill from '../components/Pill.astro';
 ---
 
 <BaseLayout title="À propos | Benjamin Melinette" description="À propos de Benjamin Melinette">
@@ -21,7 +22,7 @@ import Hero from '../components/Hero.astro';
 			</Hero>
 
 			<section>
-				<h2 class="section-title">Background</h2>
+				<h2 class="section-title">Mon histoire</h2>
 				<div class="content">
 					<p>
 						Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy.
@@ -44,13 +45,13 @@ import Hero from '../components/Hero.astro';
 				</div>
 			</section>
 			<section>
-				<h2 class="section-title">Education</h2>
+				<h2 class="section-title">Diplômes</h2>
 				<div class="content">
-					<p>Corporis voluptates tenetur laudantium.</p>
+					<Pill><p>Corporis voluptates tenetur laudantium.</p></Pill>
 				</div>
 			</section>
 			<section>
-				<h2 class="section-title">Skills</h2>
+				<h2 class="section-title">Qualités</h2>
 				<div class="content">
 					<p>officia unde omnis</p>
 				</div>
