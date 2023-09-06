@@ -17,4 +17,7 @@ C'est bien beau tout ça mais passons au côté technique du projet. En réalisa
 
 Mais puisque des images valent mieux que 1000 mots, je vous laisse avec une vidéo de démonstration du jeu.
 
-<video controls><source src="/Portfolio/assets/rpjtek_video.mp4", type="video/mp4"></video>
+<video controls>
+  <source src="/Portfolio/assets/rpjtek_video.mp4", type="video/mp4">
+  <source src="/Portfolio/assets/rpjtek_video.webm", type="video/webm">
+</video>
