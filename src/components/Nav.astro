@@ -10,9 +10,9 @@ const textLinks: { label: string; href: string }[] = [
 ];
 
 /** Icon links to social media — edit these with links to your profiles! */
-const iconLinks: { label: string; href: string; icon: Icon; }[] = [
-	{ label: 'Instragram', href: 'https://www.instagram.com/benjamin.mlt_/', icon: <Icon name="mdi:code" size="1.33em" /> },
-	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/benjamin-melinette/', icon: <Icon name="mdi:code" size="1.33em" /> },
+const iconLinks: { label: string; href: string; icon: string; }[] = [
+	{ label: 'Instragram', href: 'https://www.instagram.com/benjamin.mlt_/', icon: "mdi:instagram"},
+	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/benjamin-melinette/', icon: "mdi:linkedin"},
 ];
 ---
 
@@ -57,7 +57,7 @@ const iconLinks: { label: string; href: string; icon: Icon; }[] = [
 					iconLinks.map(({ href, icon, label }) => (
 						<a href={href} class="social">
 							<span class="sr-only">{label}</span>
-							{icon}
+							<Icon name={icon} size="1.33em" />
 						</a>
 					))
 				}
@@ -88,7 +88,7 @@ const iconLinks: { label: string; href: string; icon: Icon; }[] = [
 					iconLinks.map(({ href, icon, label }) => (
 						<a href={href} class="social">
 							<span class="sr-only">{label}</span>
-							 {icon}
+							<Icon name={icon} size="1.33em" />
 						</a>
 					))
 				}
