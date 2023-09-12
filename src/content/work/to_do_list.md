@@ -14,3 +14,7 @@ tags:
 Cette idée de projet est arrivé en voulant m'organiser un peu plus dans ma vie avec les projets Epitech et les projets personnels,
 je m'était dis qu'une application pour organiser mes journées serait très pratique d'autant plusque les applications proposant 
 cette fonctionnalité était toutes ou presque payantes.
+
+La réalisation d'application m'a permit d'apprendre les rudiments du Flutter sur un programme complétement en local. Celui-ci 
+sauvegarde donc toutes les données dans les fichiers du téléphone. Flutter étant un langage de programmation permettant de faire
+un seul produit compatible sur IOS, Android, Web, Windows, MacOs.
