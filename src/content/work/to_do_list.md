@@ -17,4 +17,15 @@ cette fonctionnalité était toutes ou presque payantes.
 
 La réalisation d'application m'a permit d'apprendre les rudiments du Flutter sur un programme complétement en local. Celui-ci 
 sauvegarde donc toutes les données dans les fichiers du téléphone. Flutter étant un langage de programmation permettant de faire
-un seul produit compatible sur IOS, Android, Web, Windows, MacOs.
+un seul produit compatible sur IOS, Android, Web, Windows, MacOs. Mon application est fonctionnel sur tous mais est adapté uniquement
+sur Android (n'ayant pas de système Macintosh pour compiler la version IOS).
+
+Voici une vidéo de démonstration de l'application :
+
+
+<center>
+  <video controls width = "500" muted = "False">
+    <source src="/Portfolio/assets/rpjtek_video.mp4", type="video/mp4">
+    <source src="/Portfolio/assets/rpjtek_video.webm", type="video/webm">
+  </video>
+</center>
