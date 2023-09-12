@@ -1,14 +1,15 @@
 ---
-title: Markdown Mystery Tour
+title: Démineur
 publishDate: 2020-03-02 00:00:00
 img: /Portfolio/assets/stock-1.jpg
 img_alt: Iridescent ripples of a bright blue and pink liquid
 description: |
-  We designed a whodunnit-style game to introduce Markdown formatting. Suspense — suspicion — syntax!
+  Durant cette année, j'ai pu découvrir les interfaces avec python en réalisant notamment un démineur en python.
 tags:
-  - Design
-  - Dev
-  - User Testing
+  - Python
+  - Interface
+  - Jeu
+  - Algorithmie
 ---
 
 ## Level-two heading
