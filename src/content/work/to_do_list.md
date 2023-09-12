@@ -22,6 +22,7 @@ sur Android (n'ayant pas de système Macintosh pour compiler la version IOS).
 
 Voici une vidéo de démonstration de l'application :
 
+<br>
 
 <center>
   <video controls width = "500" muted = "False">
