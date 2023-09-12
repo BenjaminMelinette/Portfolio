@@ -28,7 +28,7 @@ s'étant dégradé, j'ai décidé de la quitter.
 
 Voici une vidéo de démonstration du jeu assez simpliste :
 
-
+<br>
 
 <center>
   <video controls width = "500" muted = "False">
