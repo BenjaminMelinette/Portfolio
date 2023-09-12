@@ -21,6 +21,11 @@ dans le style de dofus (celui-ci n'ayant pas été terminé malheuresement). Tou
 de la position du joueur, de la carte sur laquelle il se trouve ou encore de la quête en cours. Cette sauvegarde était sauvegardé localement en fichier texte
 avec une obfuscation des données afin d'empêcher l'utilisateur de tout modifier (ça aurait été trop simple).
 
+Durant la programmation du jeu, j'étais en même temps dans une association de E-Sport à cette époque en tant que joueur, après leur avoir présenté le jeu sur
+lequel je travaillais, ils ont accroché et j'ai quitté mon "poste" de joueur pour celui de développeur, le but était de se servir du jeu comme d'une pub pour
+faire connaître l'équipe e-sport. Le problème étant qu'à cette époque, j'aurais eu besoin d'aide pour le système de combat et les relations avec l'association
+s'étant dégradé, j'ai décidé de la quitter.
+
 Voici une vidéo de démonstration du jeu assez simpliste :
 
 
