@@ -1,22 +1,33 @@
 ---
-title: Duvet Genius
+title: RPG Python
 publishDate: 2020-03-04 00:00:00
 img: /Portfolio/assets/stock-3.jpg
 img_alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
 description: |
-  We developed a virtual showcase for the softest bedding imaginable.
+  Le tout premier projet graphique en python que j'ai réalisé au lycée.
 tags:
-  - Design
-  - Dev
-  - Branding
+  - RPG
+  - Python
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere commodo venenatis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam non ligula vel metus efficitur hendrerit. In hac habitasse platea dictumst. Praesent et mauris ut mi dapibus semper. Curabitur tortor justo, efficitur sit amet pretium cursus, porta eget odio. Cras ac venenatis dolor. Donec laoreet posuere malesuada. Curabitur nec mi tempor, placerat leo sit amet, tincidunt est. Quisque pellentesque venenatis magna, eget tristique nibh pulvinar in. Vestibulum vitae volutpat arcu. Aenean ut malesuada odio, sit amet pellentesque odio. Suspendisse nunc elit, blandit nec hendrerit non, aliquet at magna. Donec id leo ut nulla sagittis sodales.
+En effet, une petite recontextualisation s'impose, en première, je découvre une vidéo parlant du développement de jeux-vidéos qui m'intéresse fortement,
+je codais déjà en python un peu de mon côté, après avoir vu cela, je me renseigne un peu et découvre la lib pygame. Puis un tutoriel fait par Graven
+expliquant le raisonnement derrière un jeu-vidéo pygame. C'est alors que je tape mes premières lignes de code pour créer ce qui était mon premier RPG.
 
-Integer vitae nibh elit. Suspendisse eget urna eu neque bibendum pharetra. Sed interdum lectus sem, in pulvinar magna dignissim vel. Quisque maximus at urna nec laoreet. Suspendisse potenti. Vestibulum rhoncus sem ut mi pellentesque, in vestibulum erat blandit. Aliquam sodales dui ac maximus consectetur. Duis quis est vehicula, imperdiet nisl nec, fermentum erat. Duis tortor diam, pharetra eu euismod in, vehicula non eros. Curabitur facilisis dui at erat ultrices gravida. In at nunc ultricies, pulvinar mi vel, sagittis mauris. Praesent pharetra posuere purus ac imperdiet. Nulla facilisi.
+Celui-ci est assez simple, le but était de visiter une carte, trouver des objets menant à une piste puis à la fin, rentrer dans une salle avec un boss
+voulant nous affronter. Plusieurs problèmes se sont posés à moi, le style du combat de Boss pour commencer, celui au début devait être un simple combat
+en 2D avec des flèches à lui lancer mais le principe de combat n'était pas agréable, j'ai alors décidé de changer vers un système de combat tour par tour
+dans le style de dofus (celui-ci n'ayant pas été terminé malheuresement). Tout un tas de fonctionnalité a été ajouté au jeu comme un système de sauvegarde
+de la position du joueur, de la carte sur laquelle il se trouve ou encore de la quête en cours. Cette sauvegarde était sauvegardé localement en fichier texte
+avec une obfuscation des données afin d'empêcher l'utilisateur de tout modifier (ça aurait été trop simple).
 
-Sed pulvinar porttitor mi in ultricies. Etiam non dolor gravida eros pulvinar pellentesque et dictum ex. Proin eu ornare ligula, sed condimentum dui. Vivamus tincidunt tellus mi, sed semper ipsum pharetra a. Suspendisse sollicitudin at sapien nec volutpat. Etiam justo urna, laoreet ac lacus sed, ultricies facilisis dolor. Integer posuere, metus vel viverra gravida, risus elit ornare magna, id feugiat erat risus ullamcorper libero. Proin vitae diam auctor, laoreet lorem vitae, varius tellus.
+Voici une vidéo de démonstration du jeu assez simpliste :
 
-Mauris sed eros in ex maximus volutpat. Suspendisse potenti. Donec lacinia justo consectetur sagittis tempor. Proin ullamcorper nisi vitae auctor rhoncus. Sed tristique aliquam augue. Pellentesque vitae fringilla ligula. Nulla arcu elit, efficitur eu nunc malesuada, eleifend tincidunt orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer mattis orci in bibendum ultricies. Quisque a dui erat. Phasellus et vulputate ipsum. Proin metus ex, lobortis nec ornare eget, bibendum ut sapien. Aliquam in dolor lobortis, aliquam tellus a, congue augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-Aenean pretium purus augue, ut bibendum erat convallis quis. Cras condimentum quis velit ac mollis. Suspendisse non purus fringilla, venenatis nisl porta, finibus odio. Curabitur aliquet metus faucibus libero interdum euismod. Morbi sed magna nisl. Morbi odio nibh, facilisis vel sapien eu, tempus tincidunt erat. Nullam erat velit, sagittis at purus quis, tristique scelerisque tortor. Pellentesque lacinia tortor id est aliquam viverra. Vestibulum et diam ac ipsum mollis fringilla.
+
+<center>
+  <video controls width = "500" muted = "False">
+    <source src="/Portfolio/assets/rpjtek_video.mp4", type="video/mp4">
+    <source src="/Portfolio/assets/rpjtek_video.webm", type="video/webm">
+  </video>
+</center>
