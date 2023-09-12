@@ -20,6 +20,7 @@ Ce projet m'a permit de familiariser avec des libs tels que : <insérer lib>
 
 Voici ci-dessous une vidéo de démonstration du projet :
 
+<br>
 
 <center>
   <video controls width = "500" muted = "False">
