@@ -1,7 +1,7 @@
 ---
 title: Shell 2.0
 publishDate: 2019-10-02 00:00:00
-img: /Portfolio/assets/stock-4.jpg
+img: /Portfolio/assets/shell.jpg
 img_alt: Soft pink and baby blue water ripples together in a subtle texture.
 description: |
     Reprogrammation d'un shell linux avec les commandes de bases, les fonctionnalités tels que les pipes, les redirections...

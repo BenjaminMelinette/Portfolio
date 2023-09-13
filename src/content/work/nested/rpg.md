@@ -1,7 +1,7 @@
 ---
 title: RPG Python
 publishDate: 2020-03-04 00:00:00
-img: /Portfolio/assets/stock-3.jpg
+img: /Portfolio/assets/rpg.jpg
 img_alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
 description: |
   Le tout premier projet graphique en python que j'ai réalisé au lycée.

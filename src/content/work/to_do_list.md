@@ -1,7 +1,7 @@
 ---
 title: To_Do_List
 publishDate: 2023-06-30 00:00:00
-img: /Portfolio/assets/rpjtek.jpg
+img: /Portfolio/assets/stock-3.jpg
 img_alt: A bright pink sheet of paper used to wrap flowers curves in front of rich blue background
 description: |
   Application mobile faite en Flutter permettant d'organiser les taches que l'on a faire tout au long de la semaine.
