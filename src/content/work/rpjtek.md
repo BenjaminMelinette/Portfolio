@@ -1,7 +1,7 @@
 ---
 title: The Shadow Of Gondarle
 publishDate: 2023-06-30 00:00:00
-img: /Portfolio/assets/demineur.jpg
+img: /Portfolio/assets/rpjtek.jpg
 img_alt: A bright pink sheet of paper used to wrap flowers curves in front of rich blue background
 description: |
   The Shadow Of Gondarle était à la base un jeu crée par une équipe de 4 développeur en C (Thomas Nagel, Alexis Variot, Néo Burtin, Benjamin Melinette). Avec l'aide de Néo Burtin, j'ai décidé de refaire le jeu en C++ afin de l'améliorer.
