@@ -16,7 +16,7 @@ logiciel ainsi que du jeu vidéo. Cherchant une version du démineur compatible 
 je n'en ai trouvé aucun me convenant alors j'ai décidé de le coder moi même en python pour y ajouter les fonctionnalités visuelles
 et techniques que je recherchais dans mon jeu.
 
-Ce projet m'a permit de familiariser avec des libs tels que : <insérer lib>
+Ce projet m'a permit de familiariser avec la fameuse lib python : Pygame.
 
 Voici ci-dessous une vidéo de démonstration du projet :
 
@@ -24,7 +24,7 @@ Voici ci-dessous une vidéo de démonstration du projet :
 
 <center>
   <video controls width = "500" muted = "False">
-    <source src="/Portfolio/assets/rpjtek_video.mp4", type="video/mp4">
-    <source src="/Portfolio/assets/rpjtek_video.webm", type="video/webm">
+    <source src="/Portfolio/assets/demineur.mp4", type="video/mp4">
+    <!--<source src="/Portfolio/assets/demineur.webm", type="video/webm">-->
   </video>
 </center>
