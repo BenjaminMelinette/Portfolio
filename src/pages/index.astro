@@ -15,6 +15,7 @@ import { Icon } from 'astro-icon';
 // Page section components
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 
 // Content Fetching: List four most recent work projects
 const projects = (await getCollection('work'))
@@ -31,13 +32,13 @@ const projects = (await getCollection('work'))
 			<header class="hero">
 				<Hero
 					title="Bienvenue, mon nom est Benjamin Melinette."
-					tagline="Je suis un jeune développeur informatique de 19 ans."
+					tagline="Je suis un jeune développeur informatique de 20 ans."
 					align="start"
 				>
 					<div class="roles">
 						<Pill><Icon name="mdi:code" size="1.33em" /> Développeur</Pill>
 						<Pill><Icon name="mdi:house-outline" size="1.33em" /> Télé-travail</Pill>
-						<Pill><Icon name="mdi:mobile-phone" size="1.33em" /> Mobile</Pill>
+						<Pill><Icon name="mdi:web" size="1.33em" /> Web</Pill>
 					</div>
 				</Hero>
 

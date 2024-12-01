@@ -84,6 +84,9 @@ const iconLinks: { label: string; href: string; icon: string; }[] = [
 		</ul>
 		<div class="menu-footer">
 			<div class="socials">
+				<a href="/Portfolio/assets/cv/BenjaminMelinette.pdf" class="btn-cv" download>
+					📄 Télécharger Mon CV
+				</a>
 				{
 					iconLinks.map(({ href, icon, label }) => (
 						<a href={href} class="social">
@@ -145,8 +148,8 @@ const iconLinks: { label: string; href: string; icon: string; }[] = [
 		font-family: var(--font-brand);
 		font-weight: 500;
 		margin-bottom: 3.5rem;
+		box-shadow: 0 4px 8px var(--accent-overlay);
 	}
-
 	.menu-header {
 		display: flex;
 		justify-content: space-between;
@@ -194,12 +197,6 @@ const iconLinks: { label: string; href: string; icon: string; }[] = [
 		z-index: -1;
 	}
 
-	.menu-content {
-		position: absolute;
-		left: 0;
-		right: 0;
-	}
-
 	.nav-items {
 		margin: 0;
 		display: flex;
@@ -238,9 +235,10 @@ const iconLinks: { label: string; href: string; icon: string; }[] = [
 
 	.socials {
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0.625rem;
+		flex-direction: row;
 		font-size: var(--icon-size);
+		align-items: center;
+		vertical-align: middle;
 	}
 
 	.social {
@@ -249,6 +247,7 @@ const iconLinks: { label: string; href: string; icon: string; }[] = [
 		text-decoration: none;
 		color: var(--accent-dark);
 		transition: color var(--theme-transition);
+		margin: 10px;
 	}
 
 	.social:hover,
@@ -345,6 +344,33 @@ const iconLinks: { label: string; href: string; icon: string; }[] = [
 	@media (forced-colors: active) {
 		.link.active {
 			color: SelectedItem;
+		}
+	}
+
+	.btn-cv {
+		background-color: var(--accent-regular); /* Couleur principale */
+		color: white;
+		padding: 0.5rem 1rem;
+		font-size: 0.875rem;
+		font-weight: bold;
+		border-radius: 0.375rem;
+		text-decoration: none;
+		display: inline-block;
+		transition: background-color 0.3s ease, transform 0.2s ease;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		margin: 10px;
+	}
+
+	.btn-cv:hover {
+		background-color: var(--accent-dark); /* Couleur de survol */
+		transform: scale(1.05);
+	}
+
+	/* Responsive pour petit écran */
+	@media (max-width: 768px) {
+		.menu-footer .btn-cv {
+			width: 100%;
+			text-align: center;
 		}
 	}
 </style>
