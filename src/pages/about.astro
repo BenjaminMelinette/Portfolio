@@ -10,14 +10,34 @@ import { Icon } from 'astro-icon';
 <BaseLayout title="À propos | Benjamin Melinette" description="À propos de Benjamin Melinette">
 		<main class="about">
 			<div class="header">
-				<img
-					alt="Benjamin Melinette Portrait"
-					width="480"
-					height="480"
-					src="/Portfolio/assets/portrait.jpg"
-				/>
+				<div class="left">
+          <img
+            alt="Benjamin Melinette Portrait"
+            width="600"
+            height="600"
+            src="/Portfolio/assets/portrait.jpg"
+				  />
+          <div class="skill-container">
+            <h2>Compétences</h2>
+            <div class="skills">
+              <div class="skills-column">
+                <ul>
+                  <li><Icon name="vscode-icons:file-type-angular" size="1.33em" /> <Icon name="logos:nestjs" size="1.33em" /> Angular / NestJs</li>
+                  <li><Icon name="vscode-icons:file-type-cpp3" size="1.33em" /> C++</li>
+                  <li><Icon name="logos:python" size="1.33em" />Python</li>
+                </ul>
+              </div>
+              <div class="skills-column">
+                <ul>
+                  <li><Icon name="logos:docker-icon" size="1.33em" />Docker</li>
+                  <li><Icon name="logos:figma" size="1.33em" /> Figma</li>
+                  <li><Icon name="vscode-icons:file-type-jest" size="1.33em" /> Jest</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
 				<div class="right">
-					<h1>A propos</h1>
 					<ul>
 						<li>
 							<div class="content">
@@ -63,6 +83,35 @@ import { Icon } from 'astro-icon';
                 </div>
 							</div>
 						</li>
+            <li>
+							<div class="work-experience">
+								<h2>Parcous Scolaire</h2>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <h3 style="margin-bottom: 8px">Epitech Nancy</h3>
+                      <h4>Programme Ecole 2027</h4>
+                      <span>Titre d'expert en technologie de l'information</span>
+                      <ul>
+                        <li>Développement informatique et professionnel</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                      <h3 style="margin-bottom: 8px">Lycée Henri Loritz</h3>
+                      <h4>Baccalauréat Général 2022</h4>
+                      <ul>
+                        <li>Mention Bien</li>
+                        <li>Spécialité Maths / NSI</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+							</div>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -78,23 +127,43 @@ import { Icon } from 'astro-icon';
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 2rem;
+  padding: 2rem 1rem;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Centrer tous les éléments horizontalement */
+  text-align: center; /* Centrer le texte à l'intérieur */
+  height: 100%;
 }
 
 .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
   width: 100%;
   max-width: 1400px;
   gap: 2rem;
+}
+
+
+.skill-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Assure que les compétences sont centrées horizontalement */
+  justify-content: center;
+  margin-top: 2.5rem;
 }
 
 .header img {
   border-radius: 50%;
   box-shadow: var(--shadow-md);
   margin-top: 25px;
+  display: block; /* Pour s'assurer que l'image est bien centrée */
+  margin-left: auto; /* Pour centrer l'image horizontalement */
+  margin-right: auto;
 }
 
 .right {
@@ -150,7 +219,7 @@ section p {
 }
 
 .work-experience {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .work-experience h3 {
@@ -160,13 +229,13 @@ section p {
 
 .timeline {
   position: relative;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .timeline-item {
   position: relative;
   padding-left: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .timeline-dot {
@@ -190,7 +259,8 @@ section p {
 }
 
 .timeline-content span {
-  font-size: var(--text-sm);
+  font-size: var(--text-md);
+  font-weight: 600;
 }
 
 .timeline-content li {
@@ -200,6 +270,51 @@ section p {
 .timeline-content p {
   font-size: var(--text-md);
   color: var(--gray-200);
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Ensures both columns are equal */
+  gap: 3rem; /* Increased gap for more space */
+  margin-top: 5rem;
+  width: 100%;
+}
+
+.skills-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.skills ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.skills li {
+  display: flex;
+  align-items: center;
+  font-size: var(--text-xl); 
+  color: var(--gray-0);
+  margin: 6rem 1rem;
+}
+
+.skills li svg {
+  margin-right: 1rem; /* Increased space between icon and text */
+  color: var(--primary-color);
+  width: 2.5rem; /* Increased icon size */
+  height: 2.5rem;
+}
+
+.skills li:hover {
+  color: var(--primary-color);
+}
+
+@media (min-width: 50em) {
+  .skills {
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales pour des écrans plus larges */
+  }
 }
 
 @media (min-width: 50em) {

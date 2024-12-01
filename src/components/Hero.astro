@@ -10,11 +10,11 @@ const { align = 'center', tagline, title } = Astro.props;
 
 <div class:list={['hero stack gap-4', align]}>
 	<div class="stack gap-2">
-		<h1 class="title">{title}</h1>
-		{tagline && <p class="tagline">{tagline}</p>}
+	  <h1 class="title">{title}</h1>
+	  {tagline && <p class="tagline">{tagline}</p>}
 	</div>
 	<slot />
-</div>
+  </div>
 
 <style>
 	.hero {
@@ -22,9 +22,14 @@ const { align = 'center', tagline, title } = Astro.props;
 		text-align: center;
 	}
 
+	.title {
+		white-space: pre-line;
+		width: 15ch;
+	}
+
 	.title,
 	.tagline {
-		max-width: 37ch;
+		max-width: 40ch;
 		margin-inline: auto;
 	}
 
