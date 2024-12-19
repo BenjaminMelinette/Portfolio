@@ -42,12 +42,13 @@ import { Icon } from 'astro-icon';
 						<li>
 							<div class="content">
                 <h2 style="margin-bottom: 15px">Histoire personelle</h2>
-                <p>
-                  Ayant toujours été passioné de jeux-vidéos. Je me suis rapidement tourné vers l'âge de 14 ans à l'informatique
-                  en découvrant le language python. Ayant beaucoup aimé ce language, j'ai continué
-                  d'en apprendre les rudiments avec l'option numérique et science de l'informatique
-                  ainsi qu'au merveilleux site qu'est OpenClassroom.
-                </p>
+                <div class="story">
+                  <p>Passionné par les jeux vidéo depuis mon plus jeune âge, j'ai rapidement découvert une fascination pour l'informatique, qui s'est concrétisée dès mes 14 ans avec l'apprentissage du langage Python. Séduit par la logique et la créativité qu'offre la programmation, j'ai approfondi mes connaissances grâce à l'option Numérique et Sciences de l'Informatique au lycée, ainsi qu'en explorant des ressources pédagogiques telles que le site OpenClassrooms.</p>                  
+                  <p>Cette passion pour l'informatique m'a naturellement conduit à poursuivre mes études à Epitech, une école reconnue pour son approche pratique et son immersion dans le monde professionnel. Ce cursus m'a permis de développer une expertise solide dans des domaines variés, allant de la création de sites web et d'applications à la gestion de projets technologiques complexes.</p>
+                  <p>Au fil de mon parcours, j'ai renforcé mes compétences en m'impliquant dans des projets concrets, en travaillant en équipe et en adoptant une méthodologie axée sur l'innovation et la résolution de problèmes. Ma formation à Epitech m'a également permis d'explorer de nouvelles technologies, d'affiner ma maîtrise du développement front-end et back-end, et de m'initier à des pratiques modernes comme le DevOps et la conteneurisation.</p>
+                  <p>Aujourd'hui, je suis un développeur passionné, prêt à relever de nouveaux défis et à mettre à profit mon savoir-faire pour concevoir des solutions informatiques innovantes et performantes. Mon objectif est d'apporter des réponses techniques adaptées aux besoins, tout en continuant à me former et à explorer les nombreuses facettes de cet univers en constante évolution.</p>
+                  <p>Je privilégie les missions en freelance, mais je reste également ouvert à toute autre opportunité qui me permettrait de mettre à profit mes compétences et de relever de nouveaux défis.</p>
+                </div>
 							</div>
 						</li>
 						<li>
@@ -309,6 +310,12 @@ section p {
 
 .skills li:hover {
   color: var(--primary-color);
+}
+
+.story{
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
 }
 
 @media (min-width: 50em) {
