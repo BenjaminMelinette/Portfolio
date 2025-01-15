@@ -21,7 +21,7 @@ Mais puisque des images valent mieux que 1000 mots, je vous laisse avec une vidÃ
 
 <center>
   <video controls width = "500" muted = "False">
-    <source src="/Portfolio/assets/rpjtek_video.mp4", type="video/mp4">
+    <source src="/Portfolio/assets/Rpjtek_video.mp4", type="video/mp4">
     <source src="/Portfolio/assets/rpjtek_video.webm", type="video/webm">
   </video>
 </center>
