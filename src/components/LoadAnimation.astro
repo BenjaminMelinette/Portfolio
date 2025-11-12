@@ -201,147 +201,194 @@
   // ====================================================
   
   const setupScrollAnimations = () => {
+    // Détection mobile
+    const isMobile = window.innerWidth <= 768;
+    
+    // Configuration adaptative pour mobile
+    const scrollConfig = {
+        start: isMobile ? 'top 95%' : 'top 90%', // Déclenchement plus tôt sur mobile
+        toggleActions: 'play none none none',
+        // Ajouter un marqueur pour le débogage (à retirer en production)
+        // markers: true
+    };
+
+    // Configuration GSAP pour mobile
+    if (isMobile) {
+        ScrollTrigger.config({
+        // Améliore la détection sur mobile
+        autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+        // Réduit le lag sur mobile
+        syncInterval: 50
+        });
+    }
+
     // Animation des cartes de skills au scroll
     gsap.utils.toArray('.skill-card').forEach((card: any, index: number) => {
-      gsap.from(card, {
+        gsap.from(card, {
         scrollTrigger: {
-          trigger: card,
-          start: 'top 90%', // Déclenché plus tôt (90% au lieu de 85%)
-          toggleActions: 'play none none none'
+            trigger: card,
+            start: isMobile ? 'top 98%' : 'top 90%',
+            toggleActions: 'play none none none',
+            // Force le refresh sur mobile
+            invalidateOnRefresh: true,
+            // Option critique pour mobile : anticipation
+            anticipatePin: isMobile ? 1 : 0
         },
         opacity: 0,
-        y: 30,
+        y: isMobile ? 20 : 30, // Mouvement réduit sur mobile
         rotation: -2,
-        duration: 0.6,
-        delay: index * 0.08,
+        duration: isMobile ? 0.4 : 0.6, // Plus rapide sur mobile
+        delay: index * (isMobile ? 0.05 : 0.08),
         ease: 'power3.out'
-      });
+        });
     });
 
     // Animation de la section projets
     gsap.from('.projects-section .section-header', {
-      scrollTrigger: {
+        scrollTrigger: {
         trigger: '.projects-section',
-        start: 'top 85%', // Plus tôt
-        toggleActions: 'play none none none'
-      },
-      opacity: 0,
-      y: 40,
-      duration: 0.7,
-      ease: 'power3.out'
+        start: isMobile ? 'top 95%' : 'top 85%',
+        toggleActions: 'play none none none',
+        invalidateOnRefresh: true
+        },
+        opacity: 0,
+        y: isMobile ? 25 : 40,
+        duration: isMobile ? 0.5 : 0.7,
+        ease: 'power3.out'
     });
 
     // Animation des cartes projets avec effet de slide
     gsap.from('.projects-section li', {
-      scrollTrigger: {
+        scrollTrigger: {
         trigger: '.gallery',
-        start: 'top 80%', // Plus tôt
-        toggleActions: 'play none none none'
-      },
-      opacity: 0,
-      y: 40,
-      x: -20,
-      stagger: 0.12,
-      duration: 0.6,
-      ease: 'power3.out'
+        start: isMobile ? 'top 95%' : 'top 80%',
+        toggleActions: 'play none none none',
+        invalidateOnRefresh: true
+        },
+        opacity: 0,
+        y: isMobile ? 25 : 40,
+        x: isMobile ? -10 : -20,
+        stagger: isMobile ? 0.08 : 0.12,
+        duration: isMobile ? 0.4 : 0.6,
+        ease: 'power3.out'
     });
 
-    // Hover effect sur les cartes projets
-    gsap.utils.toArray('.projects-section li').forEach((card: any) => {
-      card.addEventListener('mouseenter', () => {
-        gsap.to(card, {
-          y: -8,
-          scale: 1.02,
-          duration: 0.3,
-          ease: 'power2.out'
+    // Hover effect sur les cartes projets (désactivé sur mobile)
+    if (!isMobile) {
+        gsap.utils.toArray('.projects-section li').forEach((card: any) => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+            y: -8,
+            scale: 1.02,
+            duration: 0.3,
+            ease: 'power2.out'
+            });
         });
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          y: 0,
-          scale: 1,
-          duration: 0.3,
-          ease: 'power2.out'
+        
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+            y: 0,
+            scale: 1,
+            duration: 0.3,
+            ease: 'power2.out'
+            });
         });
-      });
-    });
+        });
+    }
 
     // Animation des benefit cards
     gsap.utils.toArray('.benefit-card').forEach((card: any, index: number) => {
-      gsap.from(card, {
+        gsap.from(card, {
         scrollTrigger: {
-          trigger: card,
-          start: 'top 90%',
-          toggleActions: 'play none none none'
+            trigger: card,
+            start: isMobile ? 'top 95%' : 'top 90%',
+            toggleActions: 'play none none none',
+            invalidateOnRefresh: true
         },
         opacity: 0,
-        y: 35,
+        y: isMobile ? 20 : 35,
         scale: 0.95,
-        duration: 0.6,
-        delay: index * 0.1,
+        duration: isMobile ? 0.4 : 0.6,
+        delay: index * (isMobile ? 0.06 : 0.1),
         ease: 'back.out(1.2)'
-      });
+        });
     });
 
-    // Parallaxe subtil sur l'image du hero
-    gsap.to('.hero img', {
-      scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1.5
-      },
-      y: 80,
-      ease: 'none'
-    });
+    // Parallaxe subtil sur l'image du hero (désactivé sur mobile pour performance)
+    if (!isMobile) {
+        gsap.to('.hero img', {
+        scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.5
+        },
+        y: 80,
+        ease: 'none'
+        });
+    }
 
     // Animation du CTA au scroll
     gsap.from('.cta-center', {
-      scrollTrigger: {
+        scrollTrigger: {
         trigger: '.cta-center',
-        start: 'top 90%',
-        toggleActions: 'play none none none'
-      },
-      opacity: 0,
-      scale: 0.9,
-      duration: 0.5,
-      ease: 'back.out(1.4)'
+        start: isMobile ? 'top 95%' : 'top 90%',
+        toggleActions: 'play none none none',
+        invalidateOnRefresh: true
+        },
+        opacity: 0,
+        scale: 0.9,
+        duration: isMobile ? 0.4 : 0.5,
+        ease: 'back.out(1.4)'
     });
-
-    // ====================================================
-    // 8. ANIMATIONS SUPPLÉMENTAIRES
-    // ====================================================
 
     // Animation des icônes dans les pills
     gsap.from('.roles svg', {
-      scrollTrigger: {
+        scrollTrigger: {
         trigger: '.roles',
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-      },
-      rotation: -180,
-      scale: 0,
-      stagger: 0.1,
-      duration: 0.5,
-      ease: 'back.out(2)'
+        start: isMobile ? 'top 95%' : 'top 80%',
+        toggleActions: 'play none none none',
+        invalidateOnRefresh: true
+        },
+        rotation: -180,
+        scale: 0,
+        stagger: isMobile ? 0.06 : 0.1,
+        duration: isMobile ? 0.4 : 0.5,
+        ease: 'back.out(2)'
     });
 
     // Animation subtile des titres au scroll
     gsap.utils.toArray('h2, h3').forEach((title: any) => {
-      gsap.from(title, {
+        gsap.from(title, {
         scrollTrigger: {
-          trigger: title,
-          start: 'top 92%',
-          toggleActions: 'play none none none'
+            trigger: title,
+            start: isMobile ? 'top 96%' : 'top 92%',
+            toggleActions: 'play none none none',
+            invalidateOnRefresh: true
         },
         opacity: 0,
-        x: -20,
-        duration: 0.6,
+        x: isMobile ? -10 : -20,
+        duration: isMobile ? 0.4 : 0.6,
         ease: 'power2.out'
-      });
+        });
     });
-  };
+
+    // IMPORTANT : Refresh après un court délai pour mobile
+    if (isMobile) {
+        setTimeout(() => {
+        ScrollTrigger.refresh();
+        }, 500);
+        
+        // Refresh également après le resize
+        let resizeTimer: NodeJS.Timeout;
+        window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 250);
+        });
+    }
+    };
 
   // ====================================================
   // 9. INITIALIZATION
