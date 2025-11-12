@@ -1,0 +1,446 @@
+---
+// Composant LoadAnimation amélioré
+---
+
+<!-- Preloader -->
+<div id="preloader" class="preloader">
+  <div class="preloader-content">
+    <div class="typewriter-wrapper">
+      <span class="typewriter-text"></span>
+      <span class="cursor">|</span>
+    </div>
+    <div class="subtitle">Création de sites web sur mesure</div>
+  </div>
+</div>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ====================================================
+  // 1. PRELOADER & INITIAL SETUP
+  // ====================================================
+  
+  const runAnimation = () => {
+    // Vérifier si l'animation a déjà été vue dans cette session
+    const hasSeenPreloader = sessionStorage.getItem('hasSeenPreloader');
+    
+    if (hasSeenPreloader) {
+      // Supprimer le preloader immédiatement et de manière synchrone
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.style.display = 'none'; // Cache immédiatement
+        preloader.remove(); // Puis supprime du DOM
+      }
+      document.body.style.overflow = 'auto';
+      
+      // Afficher directement tout le contenu sans animation
+      gsap.set(['.hero', '.hero img', '.roles', 'nav', '.skills-wrapper'], {
+        opacity: 1,
+        y: 0,
+        clearProps: 'all' // Nettoie toutes les propriétés GSAP
+      });
+      
+      // Lancer uniquement les animations au scroll
+      setupScrollAnimations();
+      return;
+    }
+    
+    // Marquer que l'animation a été vue
+    sessionStorage.setItem('hasSeenPreloader', 'true');
+    
+    const tl = gsap.timeline();
+    
+    // Préparer les éléments pour l'animation (cachés initialement)
+    gsap.set(['.hero', '.hero img', '.roles'], {
+      opacity: 0,
+      y: 30
+    });
+    
+    gsap.set('.skills-wrapper', { opacity: 0, y: 30 });
+    gsap.set('nav', { opacity: 0, y: -20 });
+    gsap.set('.subtitle', { opacity: 0, y: 10 });
+
+    // ====================================================
+    // 2. ANIMATION MACHINE À ÉCRIRE (0s - 2s)
+    // ====================================================
+    
+    const text = "Benjamin Melinette";
+    const typewriterElement = document.querySelector('.typewriter-text');
+    
+    if (typewriterElement) {
+      let charIndex = 0;
+      
+      const typeWriter = () => {
+        if (charIndex < text.length) {
+          typewriterElement.textContent += text.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeWriter, 80); // Vitesse de frappe
+        }
+      };
+      
+      setTimeout(typeWriter, 300);
+    }
+    
+    // Animation du curseur
+    tl.to('.cursor', {
+      opacity: 0,
+      repeat: -1,
+      yoyo: true,
+      duration: 0.5,
+      ease: 'power1.inOut'
+    }, 0)
+    
+    // Apparition du sous-titre
+    .to('.subtitle', {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power2.out'
+    }, 1.8)
+    
+    // ====================================================
+    // 3. DISPARITION DU PRELOADER (2.2s - 2.8s)
+    // ====================================================
+    
+    .to('.preloader-content', {
+      opacity: 0,
+      y: -30,
+      duration: 0.5,
+      ease: 'power2.in'
+    }, '+=0.4')
+    .to('.preloader', {
+      opacity: 0,
+      duration: 0.3,
+      ease: 'power2.inOut',
+      onComplete: () => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+          preloader.style.display = 'none'; // Cache le preloader
+          preloader.remove(); // Puis supprime du DOM
+        }
+        document.body.style.overflow = 'auto';
+      }
+    }, '-=0.2')
+    
+    // ====================================================
+    // 4. APPARITION DE LA NAVIGATION (2.4s - 2.9s)
+    // ====================================================
+    
+    .to('nav', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: 'power3.out'
+    }, '-=0.5')
+    
+    // ====================================================
+    // 5. REVEAL DU HERO (2.5s - 3.3s)
+    // ====================================================
+    
+    .to('.hero', {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power2.out'
+    }, '-=0.4')
+    
+    // Image avec effet de zoom subtil
+    .to('.hero img', {
+      opacity: 1,
+      y: 0,
+      scale: 1.03,
+      duration: 1,
+      ease: 'power3.out'
+    }, '-=0.5')
+    .to('.hero img', {
+      scale: 1,
+      duration: 0.6,
+      ease: 'power2.out'
+    }, '-=0.4')
+    
+    // Pills avec stagger
+    .to('.roles', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: 'power3.out'
+    }, '-=0.6')
+    
+    // Animation individuelle des pills
+    .from('.roles > *', {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+      duration: 0.4,
+      ease: 'back.out(1.4)'
+    }, '-=0.3')
+    
+    // ====================================================
+    // 6. APPARITION DES SKILLS (3.0s - 3.6s)
+    // ====================================================
+    
+    .to('.skills-wrapper', {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out'
+    }, '-=0.3');
+
+    // ====================================================
+    // 7. SCROLL-TRIGGERED ANIMATIONS (Déclenchement plus précoce)
+    // ====================================================
+    
+    setupScrollAnimations();
+  };
+
+  // ====================================================
+  // FONCTION POUR LES ANIMATIONS AU SCROLL
+  // ====================================================
+  
+  const setupScrollAnimations = () => {
+    // Animation des cartes de skills au scroll
+    gsap.utils.toArray('.skill-card').forEach((card: any, index: number) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 90%', // Déclenché plus tôt (90% au lieu de 85%)
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        y: 30,
+        rotation: -2,
+        duration: 0.6,
+        delay: index * 0.08,
+        ease: 'power3.out'
+      });
+    });
+
+    // Animation de la section projets
+    gsap.from('.projects-section .section-header', {
+      scrollTrigger: {
+        trigger: '.projects-section',
+        start: 'top 85%', // Plus tôt
+        toggleActions: 'play none none none'
+      },
+      opacity: 0,
+      y: 40,
+      duration: 0.7,
+      ease: 'power3.out'
+    });
+
+    // Animation des cartes projets avec effet de slide
+    gsap.from('.projects-section li', {
+      scrollTrigger: {
+        trigger: '.gallery',
+        start: 'top 80%', // Plus tôt
+        toggleActions: 'play none none none'
+      },
+      opacity: 0,
+      y: 40,
+      x: -20,
+      stagger: 0.12,
+      duration: 0.6,
+      ease: 'power3.out'
+    });
+
+    // Hover effect sur les cartes projets
+    gsap.utils.toArray('.projects-section li').forEach((card: any) => {
+      card.addEventListener('mouseenter', () => {
+        gsap.to(card, {
+          y: -8,
+          scale: 1.02,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          y: 0,
+          scale: 1,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+    });
+
+    // Animation des benefit cards
+    gsap.utils.toArray('.benefit-card').forEach((card: any, index: number) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        y: 35,
+        scale: 0.95,
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: 'back.out(1.2)'
+      });
+    });
+
+    // Parallaxe subtil sur l'image du hero
+    gsap.to('.hero img', {
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1.5
+      },
+      y: 80,
+      ease: 'none'
+    });
+
+    // Animation du CTA au scroll
+    gsap.from('.cta-center', {
+      scrollTrigger: {
+        trigger: '.cta-center',
+        start: 'top 90%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 0,
+      scale: 0.9,
+      duration: 0.5,
+      ease: 'back.out(1.4)'
+    });
+
+    // ====================================================
+    // 8. ANIMATIONS SUPPLÉMENTAIRES
+    // ====================================================
+
+    // Animation des icônes dans les pills
+    gsap.from('.roles svg', {
+      scrollTrigger: {
+        trigger: '.roles',
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+      },
+      rotation: -180,
+      scale: 0,
+      stagger: 0.1,
+      duration: 0.5,
+      ease: 'back.out(2)'
+    });
+
+    // Animation subtile des titres au scroll
+    gsap.utils.toArray('h2, h3').forEach((title: any) => {
+      gsap.from(title, {
+        scrollTrigger: {
+          trigger: title,
+          start: 'top 92%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        x: -20,
+        duration: 0.6,
+        ease: 'power2.out'
+      });
+    });
+  };
+
+  // ====================================================
+  // 9. INITIALIZATION
+  // ====================================================
+  
+  // Bloquer le scroll pendant le preloader
+  document.body.style.overflow = 'hidden';
+  
+  // Attendre que le DOM soit chargé
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runAnimation);
+  } else {
+    runAnimation();
+  }
+</script>
+
+<style>
+  /* ====================================================== */
+  /* PRELOADER */
+  /* ====================================================== */
+  
+  .preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  .preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .typewriter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .typewriter-text {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 700;
+    color: var(--gray-0);
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  .cursor {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 300;
+    color: var(--accent-regular);
+    animation: blink 0.7s infinite;
+  }
+
+  .subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: var(--gray-300);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  /* ====================================================== */
+  /* DARK MODE */
+  /* ====================================================== */
+  
+  :root.theme-dark .preloader {
+    background: linear-gradient(135deg, #000000 0%, #0f0f1e 100%);
+  }
+
+  /* ====================================================== */
+  /* RESPONSIVE */
+  /* ====================================================== */
+  
+  @media (max-width: 640px) {
+    .preloader-content {
+      padding: 0 1rem;
+      text-align: center;
+    }
+    
+    .typewriter-wrapper {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>

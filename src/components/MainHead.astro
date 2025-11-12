@@ -26,22 +26,37 @@ const {
 	rel="stylesheet"
 />
 <script is:inline>
-	// This code is inlined in the head to make dark mode instant & blocking.
+	// Thème par défaut : dark
 	const getThemePreference = () => {
-		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-			return localStorage.getItem('theme');
+		if (typeof localStorage !== 'undefined') {
+			const storedTheme = localStorage.getItem('theme');
+			if (storedTheme) return storedTheme; // l'utilisateur a déjà choisi
 		}
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		// Si aucun choix enregistré → dark par défaut
+		return 'dark';
 	};
+
 	const isDark = getThemePreference() === 'dark';
-	document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
+	document.documentElement.classList.toggle('theme-dark', isDark);
 
 	if (typeof localStorage !== 'undefined') {
-		// Watch the document element and persist user preference when it changes.
+		// Observe les changements de thème pour les sauvegarder
 		const observer = new MutationObserver(() => {
-			const isDark = document.documentElement.classList.contains('theme-dark');
-			localStorage.setItem('theme', isDark ? 'dark' : 'light');
+			const isDarkNow = document.documentElement.classList.contains('theme-dark');
+			localStorage.setItem('theme', isDarkNow ? 'dark' : 'light');
 		});
 		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 	}
+
+	try {
+      if (sessionStorage.getItem('hasSeenPreloader')) {
+        document.documentElement.classList.add('skip-preloader');
+      }
+    } catch (e) {}
 </script>
+
+<style is:global>
+	.skip-preloader .preloader {
+		display: none !important;
+	}
+</style>

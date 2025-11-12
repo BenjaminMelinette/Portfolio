@@ -2,64 +2,186 @@
 import { Icon } from 'astro-icon';
 ---
 
-<section class="box skills">
-	<div class="stack gap-2 lg:gap-4">
-		<Icon name="vscode-icons:file-type-angular" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>Angular</h2>
-		<p style="white-space: pre-line">2 années d'expérience en Angular / NestJs
-			&rarr; Création d'application web</p>
-	</div>
-	<div class="stack gap-2 lg:gap-4">
-		<Icon name="logos:c" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>C / C++</h2>
-		<p style="white-space: pre-line">2 années d'expérience en C  / C++
-			&rarr; développement logiciel / jeux-vidéos / scripting.</p>
-	</div>
-	<div class="stack gap-2 lg:gap-4">
-		<Icon name="logos:python" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>Python</h2>
-		<p style="white-space: pre-line">3 ans d'expérience en Python 
-			&rarr; back-end Python / jeux-vidéos / interface logiciel...</p>
-	</div>
+<section class="skills-section">
+  <div class="skills-container">
+    <header class="section-header">
+      <h2>Technologies & Expertise</h2>
+      <p class="section-description">
+        Des outils modernes pour créer des sites web performants, rapides et optimisés pour votre activité.
+      </p>
+    </header>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <Icon name="vscode-icons:file-type-astro" size="2.5rem" />
+        <div class="skill-info">
+          <h3>Astro / React</h3>
+          <p>Sites vitrines élégants et ultra-rapides, optimisés pour le référencement et l'intégration d'outils de réservation ou de commande en ligne.</p>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <Icon name="vscode-icons:file-type-angular" size="2.5rem" />
+        <div class="skill-info">
+          <h3>Angular / NestJS</h3>
+          <p>Applications web complètes pour les entreprises : tableaux de bord, outils internes et systèmes de suivi en temps réel.</p>
+        </div>
+      </div>
+
+		<div class="skill-card">
+			<Icon name="mdi:cloud-sync-outline" size="2.5rem" />
+			<div class="skill-info">
+				<h3>Maintenance / Déploiement</h3>
+				<p>Gestion complète après la mise en ligne : sauvegardes, mises à jour et surveillance pour garder votre site toujours opérationnel.</p>
+			</div>
+		</div>
+    </div>
+  </div>
 </section>
 
 <style>
-	.box {
-		border: 1px solid var(--gray-800);
-		border-radius: 0.75rem;
-		padding: 1.5rem;
-		background-color: var(--gray-999_40);
-		box-shadow: var(--shadow-sm);
-	}
+  .skills-section {
+    width: 100%;
+    padding: 3rem 1rem;
+  }
 
-	.skills {
-		display: flex;
-		flex-direction: column;
-		gap: 3rem;
-	}
+  .skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-	.skills h2 {
-		font-size: var(--text-lg);
-	}
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-	.skills p {
-		color: var(--gray-400);
-	}
+  .section-header h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--gray-0);
+    margin-bottom: 1rem;
+  }
 
-	@media (min-width: 50em) {
-		.box {
-			border-radius: 1.5rem;
-			padding: 2.5rem;
-		}
+  .section-description {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--gray-200);
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
+  }
 
-		.skills {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 5rem;
-		}
+  .skills-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
 
-		.skills h2 {
-			font-size: var(--text-2xl);
-		}
-	}
+  .skill-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: var(--gradient-subtle);
+    border-radius: 1rem;
+    border: 1px solid var(--gray-800);
+    transition: all 0.3s ease;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-regular);
+  }
+
+  .skill-card > :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  .skill-info {
+    flex: 1;
+  }
+
+  .skill-info h3 {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    color: var(--accent-regular);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .skill-info p {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: var(--gray-200);
+    line-height: 1.6;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .skills-section {
+      padding: 2rem 1rem;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .skill-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .skills-grid {
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .skills-section {
+      padding: 4rem 2rem;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skill-card:last-child {
+      grid-column: 1 / -1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .skills-section {
+      padding: 5rem 3rem;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .skill-card:last-child {
+      grid-column: auto;
+      max-width: none;
+    }
+
+    .skill-card {
+      padding: 2.5rem;
+    }
+  }
+
+  /* Dark mode adjustments */
+  :root.theme-dark .skill-card {
+    background: var(--gray-999);
+    border-color: var(--gray-800);
+  }
+
+  :root.theme-dark .skill-card:hover {
+    border-color: var(--accent-dark);
+  }
+
+  :root.theme-dark .skill-info h3 {
+    color: var(--accent-dark);
+  }
 </style>

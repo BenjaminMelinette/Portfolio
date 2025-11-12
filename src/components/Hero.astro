@@ -24,36 +24,39 @@ const { align = 'center', tagline, title } = Astro.props;
 
 	.title {
 		white-space: pre-line;
-		width: 15ch;
-	}
-
-	.title,
-	.tagline {
-		max-width: 40ch;
+		width: 100%; /* largeur pleine sur mobile */
+		max-width: 100%; /* éviter overflow */
+		word-break: break-word; /* couper les mots trop longs */
+		font-size: clamp(2.25rem, 5vw, var(--text-3xl)); /* responsive */
+		color: var(--gray-0);
 		margin-inline: auto;
 	}
 
-	.title {
-		font-size: var(--text-3xl);
-		color: var(--gray-0);
+
+	.tagline {
+		max-width: 90%; /* responsive tagline */
+		margin-inline: auto;
+		font-size: clamp(1rem, 4vw, var(--text-lg));
 	}
 
 	@media (min-width: 50em) {
 		.hero {
 			font-size: var(--text-xl);
-		}
-
-		.start {
 			text-align: start;
 		}
 
 		.start .title,
 		.start .tagline {
-			margin-inline: unset;
+			margin-inline: 0;
 		}
 
 		.title {
-			font-size: var(--text-5xl);
+			font-size: clamp(2.5rem, 3vw, var(--text-5xl));
+			max-width: 40ch; /* sur desktop seulement */
+		}
+
+		.tagline {
+			max-width: 40ch;
 		}
 	}
 </style>

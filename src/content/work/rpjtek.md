@@ -9,6 +9,7 @@ tags:
   - Développement
   - Jeux-vidéos
   - C++
+
 ---
 
 Comme expliqué un peu plus haut. The Shadow Of Gondarle était un jeu vidéo de type RPG que l'on avait crée à 4 (Thomas Nagel, Alexis Variot, Néo Burtin, Benjamin Melinette) et dévelopée en C. Avec l'aide de Néo Burtin qui s'est occupé de faire les cartes du jeu et le système de chargement de cartes ainsi qu'une partie des menus, on a décidé de recrée ce jeu en C++ afin de l'améliorer et d'en apprendre plus sur ce langage.

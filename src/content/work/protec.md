@@ -9,6 +9,7 @@ tags:
   - Angular
   - NestJS
   - CI / CD
+
 ---
 
 Ce projet réalisé en Duo avec Elias Fassela est un site réalisé en Angular pour le front-end et NestJS pour le back-end. Personellement, j'ai pu travaillé sur plusieurs fonctionnalités tels que la protection du site, la gestion du rôle de l'utilisateur pour la navigation dans le site, un tableau des stocks en temps réel ou encore un gestionnaire de formulaire que l'on peut voir ci-dessous :

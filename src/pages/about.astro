@@ -1,345 +1,489 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
 import ContactCTA from '../components/ContactCTA.astro';
-import Hero from '../components/Hero.astro';
-import Pill from '../components/Pill.astro';
 import { Icon } from 'astro-icon';
 ---
 
 <BaseLayout title="À propos | Benjamin Melinette" description="À propos de Benjamin Melinette">
-		<main class="about">
-			<div class="header">
-				<div class="left">
-          <img
-            alt="Benjamin Melinette Portrait"
-            width="600"
-            height="600"
-            src="/Portfolio/assets/portrait.jpg"
-				  />
-          <div class="skill-container">
-            <h2>Compétences</h2>
-            <div class="skills">
-              <div class="skills-column">
-                <ul>
-                  <li><Icon name="vscode-icons:file-type-angular" size="1.33em" /> <Icon name="logos:nestjs" size="1.33em" /> Angular / NestJs</li>
-                  <li><Icon name="vscode-icons:file-type-cpp3" size="1.33em" /> C++</li>
-                  <li><Icon name="logos:python" size="1.33em" />Python</li>
-                </ul>
-              </div>
-              <div class="skills-column">
-                <ul>
-                  <li><Icon name="logos:docker-icon" size="1.33em" />Docker</li>
-                  <li><Icon name="logos:figma" size="1.33em" /> Figma</li>
-                  <li><Icon name="vscode-icons:file-type-jest" size="1.33em" /> Jest</li>
-                </ul>
-              </div>
+  <main class="about-page">
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <img
+          class="portrait"
+          alt="Benjamin Melinette"
+          width="200"
+          height="200"
+          src="/Portfolio/assets/portrait.jpg"
+        />
+        <div class="hero-text">
+          <h1>Benjamin Melinette</h1>
+          <p class="subtitle">Développeur Full-Stack Web • Télétravail depuis la Roumanie</p>
+          <p class="bio">
+            Passionné par le développement web et les technologies modernes, 
+            je recherche un contrat en télétravail (CDD/CDI/Freelance) pour créer 
+            des solutions innovantes et performantes adaptées à vos besoins.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+      <h2>Compétences Techniques</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="icons">
+            <Icon name="vscode-icons:file-type-angular" size="2.5rem" />
+            <Icon name="logos:nestjs" size="2.5rem" />
+          </div>
+          <span>Angular / NestJS</span>
+        </div>
+        <div class="skill-card">
+          <Icon name="vscode-icons:file-type-cpp3" size="2.5rem" />
+          <span>C++</span>
+        </div>
+        <div class="skill-card">
+          <Icon name="logos:python" size="2.5rem" />
+          <span>Python</span>
+        </div>
+        <div class="skill-card">
+          <Icon name="logos:docker-icon" size="2.5rem" />
+          <span>Docker</span>
+        </div>
+        <div class="skill-card">
+          <Icon name="logos:figma" size="2.5rem" />
+          <span>Figma</span>
+        </div>
+        <div class="skill-card">
+          <Icon name="vscode-icons:file-type-jest" size="2.5rem" />
+          <span>Jest</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+      <h2>Expériences Professionnelles</h2>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Prokov Editions</h3>
+              <span class="timeline-date">Avril - Août 2025</span>
             </div>
+            <h4>Stagiaire en Troisième Année</h4>
+            <ul>
+              <li>Création d'un générateur de sites web à partir d'un formulaire avec auto-déploiement</li>
+              <li>Mise en place d'un tableau de bord pour le suivi des incidents, l'analyse des statistiques d'utilisation et les comparaisons périodiques</li>
+              <li>Développement d'un import de fichier .ICS pour un carnet de rendez-vous (Objective-C / Swift)</li>
+            </ul>
           </div>
         </div>
-				<div class="right">
-					<ul>
-						<li>
-							<div class="content">
-                <h2 style="margin-bottom: 15px">Histoire personelle</h2>
-                <div class="story">
-                  <p>Passionné par les jeux vidéo depuis mon plus jeune âge, j'ai rapidement découvert une fascination pour l'informatique, qui s'est concrétisée dès mes 14 ans avec l'apprentissage du langage Python. Séduit par la logique et la créativité qu'offre la programmation, j'ai approfondi mes connaissances grâce à l'option Numérique et Sciences de l'Informatique au lycée, ainsi qu'en explorant des ressources pédagogiques telles que le site OpenClassrooms.</p>                  
-                  <p>Cette passion pour l'informatique m'a naturellement conduit à poursuivre mes études à Epitech, une école reconnue pour son approche pratique et son immersion dans le monde professionnel. Ce cursus m'a permis de développer une expertise solide dans des domaines variés, allant de la création de sites web et d'applications à la gestion de projets technologiques complexes.</p>
-                  <p>Au fil de mon parcours, j'ai renforcé mes compétences en m'impliquant dans des projets concrets, en travaillant en équipe et en adoptant une méthodologie axée sur l'innovation et la résolution de problèmes. Ma formation à Epitech m'a également permis d'explorer de nouvelles technologies, d'affiner ma maîtrise du développement front-end et back-end, et de m'initier à des pratiques modernes comme le DevOps et la conteneurisation.</p>
-                  <p>Aujourd'hui, je suis un développeur passionné, prêt à relever de nouveaux défis et à mettre à profit mon savoir-faire pour concevoir des solutions informatiques innovantes et performantes. Mon objectif est d'apporter des réponses techniques adaptées aux besoins, tout en continuant à me former et à explorer les nombreuses facettes de cet univers en constante évolution.</p>
-                  <p>Je privilégie les missions en freelance, mais je reste également ouvert à toute autre opportunité qui me permettrait de mettre à profit mes compétences et de relever de nouveaux défis.</p>
-                </div>
-							</div>
-						</li>
-						<li>
-							<div class="work-experience">
-								<h2>Expériences professionnelles</h2>
-                <div class="timeline">
-                  <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                      <h3 style="margin-bottom: 8px">Protection Civile</h3>
-                      <h4>Bénévole Full-Stack</h4>
-                      <span>Avril 2024 (en cours)</span>
-                      <ul>
-                        <li>Passage de HTML / CSS vers Angular. Gestions des comptes, des stocks, des formulaires...</li>
-                        <li>Création d'une Rest-Api NestJs</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                      <h3 style="margin-bottom: 8px">Axyus</h3>
-                      <h4>Stagiaire en Seconde Année</h4>
-                      <span>Juillet 2023 -  Décembre 2023</span>
-                      <ul>
-                        <li>Reprise du développement d'une solution technique pour le Ministère de l'Economie et des Finances</li>
-                        <li>Projet divisé en 3 parties (Scrapper Python | IA Python | Site Web Angular / Java Spring Boot)</li>
-                        <li>Dockerisation et déploiement du projet</li>
-                        <li>Documentation Utilisateur et Technique du projet</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-							</div>
-						</li>
-            <li>
-							<div class="work-experience">
-								<h2>Parcous Scolaire</h2>
-                <div class="timeline">
-                  <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                      <h3 style="margin-bottom: 8px">Epitech Nancy</h3>
-                      <h4>Programme Ecole 2027</h4>
-                      <span>Titre d'expert en technologie de l'information</span>
-                      <ul>
-                        <li>Développement informatique et professionnel</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                      <h3 style="margin-bottom: 8px">Lycée Henri Loritz</h3>
-                      <h4>Baccalauréat Général 2022</h4>
-                      <ul>
-                        <li>Mention Bien</li>
-                        <li>Spécialité Maths / NSI</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</main>
 
-		<ContactCTA />
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Protection Civile</h3>
+              <span class="timeline-date">Avril - Décembre 2024</span>
+            </div>
+            <h4>Bénévole pour la Création du Site</h4>
+            <ul>
+              <li>Migration de HTML/CSS vers Angular avec gestion complète des comptes, stocks et formulaires</li>
+              <li>Développement d'une API REST avec NestJS</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Axyus</h3>
+              <span class="timeline-date">Juillet - Décembre 2023</span>
+            </div>
+            <h4>Stagiaire en Seconde Année</h4>
+            <ul>
+              <li>Reprise du développement d'une solution technique pour le Ministère de l'Économie et des Finances</li>
+              <li>Projet divisé en 3 parties : Scrapper Python, IA Python, Site Web Angular/Spring Boot</li>
+              <li>Dockerisation, déploiement et documentation technique du projet</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section">
+      <h2>Parcours Académique</h2>
+      
+      <div class="education-grid">
+        <div class="education-card">
+          <h3>Epitech Nancy</h3>
+          <h4>Expert en Technologies de l'Information</h4>
+          <p class="education-year">Programme 2027</p>
+          <p>Formation en développement informatique avec une approche pratique et professionnelle</p>
+        </div>
+
+        <div class="education-card">
+          <h3>Lycée Henri Loritz</h3>
+          <h4>Baccalauréat Général</h4>
+          <p class="education-year">2022 - Mention Bien</p>
+          <p>Spécialités : Mathématiques & NSI</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="story-section">
+      <h2>Mon Parcours</h2>
+      <div class="story-content">
+        <p>
+          Passionné par les jeux vidéo et l'informatique depuis mon plus jeune âge, j'ai découvert 
+          la programmation à 14 ans avec Python. Cette première expérience a révélé ma fascination 
+          pour la logique et la créativité du développement.
+        </p>
+        <p>
+          Mon parcours à Epitech m'a permis de transformer cette passion en expertise professionnelle. 
+          À travers des projets variés - du développement de jeux vidéo 2D en ligne à la création de 
+          raytracers, en passant par des applications de monitoring - j'ai acquis une solide maîtrise 
+          du développement full-stack.
+        </p>
+        <p>
+          Actuellement en télétravail depuis la Roumanie, je recherche des opportunités en CDD, CDI 
+          ou freelance qui me permettront de continuer à explorer les technologies web modernes et 
+          de relever de nouveaux défis techniques.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <ContactCTA />
 </BaseLayout>
 
 <style>
-.about {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 2rem 1rem;
-}
-
-.left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; /* Centrer tous les éléments horizontalement */
-  text-align: center; /* Centrer le texte à l'intérieur */
-  height: 100%;
-}
-
-.header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1400px;
-  gap: 2rem;
-}
-
-
-.skill-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Assure que les compétences sont centrées horizontalement */
-  justify-content: center;
-  margin-top: 2.5rem;
-}
-
-.header img {
-  border-radius: 50%;
-  box-shadow: var(--shadow-md);
-  margin-top: 25px;
-  display: block; /* Pour s'assurer que l'image est bien centrée */
-  margin-left: auto; /* Pour centrer l'image horizontalement */
-  margin-right: auto;
-}
-
-.right {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  color: var(--gray-0);
-  flex: 0.85;
-  margin-bottom: 50px;
-}
-
-.right h2 {
-  font-size: var(--text-2xl);
-  color: var(--primary-color);
-}
-
-.right ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.right ul li {
-  font-size: var(--text-2xl);
-  padding: 0.5rem 0;
-  display: flex;
-  flex-direction: column;
-}
-
-section {
-  margin-top: 3rem;
-  padding: 1rem;
-  border-top: 1px solid var(--gray-300);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  max-width: 1200px;
-}
-
-section h3 {
-  font-size: var(--text-xl);
-  color: var(--primary-color);
-}
-
-section p {
-  font-size: var(--text-lg);
-  color: var(--gray-200);
-}
-
-.content{
-	font-size: 1rem;
-}
-
-.work-experience {
-  margin-top: 1rem;
-}
-
-.work-experience h3 {
-  font-size: var(--text-xl);
-  color: var(--primary-color);
-}
-
-.timeline {
-  position: relative;
-  padding: 1rem 0;
-}
-
-.timeline-item {
-  position: relative;
-  padding-left: 2rem;
-  margin-bottom: 1rem;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: 0;
-  top: 10px;
-  width: 12px;
-  height: 12px;
-  background-color: white;
-  border-radius: 50%;
-}
-
-.timeline-content {
-  padding-left: 2rem;
-}
-
-.timeline-content h4 {
-  font-size: var(--text-lg);
-  font-weight: bold;
-  color: var(--primary-color);
-}
-
-.timeline-content span {
-  font-size: var(--text-md);
-  font-weight: 600;
-}
-
-.timeline-content li {
-  font-size: var(--text-sm) !important;
-}
-
-.timeline-content p {
-  font-size: var(--text-md);
-  color: var(--gray-200);
-}
-
-.skills {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Ensures both columns are equal */
-  gap: 3rem; /* Increased gap for more space */
-  margin-top: 5rem;
-  width: 100%;
-}
-
-.skills-column {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-.skills ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.skills li {
-  display: flex;
-  align-items: center;
-  font-size: var(--text-xl); 
-  color: var(--gray-0);
-  margin: 6rem 1rem;
-}
-
-.skills li svg {
-  margin-right: 1rem; /* Increased space between icon and text */
-  color: var(--primary-color);
-  width: 2.5rem; /* Increased icon size */
-  height: 2.5rem;
-}
-
-.skills li:hover {
-  color: var(--primary-color);
-}
-
-.story{
-  display: flex;
-  flex-direction: column;
-  gap: 2vh;
-}
-
-@media (min-width: 50em) {
-  .skills {
-    grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales pour des écrans plus larges */
-  }
-}
-
-@media (min-width: 50em) {
-  .about {
-    padding: 3rem;
+  .about-page {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
   }
 
-  .header {
-    gap: 3rem;
+  /* Hero Section */
+  .hero-section {
+    margin-bottom: 4rem;
   }
 
-  .right {
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 2rem;
+    text-align: center;
   }
 
-  .right ul li {
+  .portrait {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    object-fit: cover;
+  }
+
+  .hero-text h1 {
+    color: var(--gray-0);
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
     font-size: var(--text-xl);
+    color: var(--accent-regular);
+    font-weight: 600;
+    margin-bottom: 1rem;
   }
-}
 
+  .bio {
+    font-size: var(--text-lg);
+    color: var(--gray-200);
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  /* Sections communes */
+  section {
+    margin-bottom: 4rem;
+  }
+
+  section h2 {
+    font-size: var(--text-3xl);
+    color: var(--gray-0);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  /* Skills Section */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .skill-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--gradient-subtle);
+    border-radius: 1rem;
+    border: 1px solid var(--gray-800);
+    transition: all 0.3s ease;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-regular);
+  }
+
+  .skill-card span {
+    font-size: var(--text-md);
+    font-weight: 600;
+    color: var(--gray-100);
+    text-align: center;
+  }
+
+  .skill-card .icons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  /* Timeline */
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gradient-accent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: -0.5rem;
+    top: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    background: var(--accent-regular);
+    border-radius: 50%;
+    border: 3px solid var(--gray-999);
+    box-shadow: 0 0 0 4px var(--accent-overlay);
+  }
+
+  .timeline-content {
+    background: var(--gradient-subtle);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--gray-800);
+  }
+
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-content h3 {
+    font-size: var(--text-xl);
+    color: var(--accent-regular);
+    margin: 0;
+  }
+
+  .timeline-content h4 {
+    font-size: var(--text-lg);
+    color: var(--gray-100);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-date {
+    font-size: var(--text-sm);
+    color: var(--gray-400);
+    font-weight: 600;
+  }
+
+  .timeline-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .timeline-content li {
+    font-size: var(--text-md);
+    color: var(--gray-200);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .timeline-content li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent-regular);
+    font-weight: bold;
+  }
+
+  /* Education Section */
+  .education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .education-card {
+    background: var(--gradient-subtle);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--gray-800);
+    transition: all 0.3s ease;
+  }
+
+  .education-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-regular);
+  }
+
+  .education-card h3 {
+    font-size: var(--text-xl);
+    color: var(--accent-regular);
+    margin-bottom: 0.5rem;
+  }
+
+  .education-card h4 {
+    font-size: var(--text-lg);
+    color: var(--gray-100);
+    margin-bottom: 0.75rem;
+  }
+
+  .education-year {
+    font-size: var(--text-sm);
+    color: var(--gray-400);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .education-card p:last-child {
+    font-size: var(--text-md);
+    color: var(--gray-200);
+    line-height: 1.6;
+  }
+
+  /* Story Section */
+  .story-section {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .story-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .story-content p {
+    font-size: var(--text-lg);
+    color: var(--gray-200);
+    line-height: 1.8;
+    text-align: justify;
+  }
+
+  /* Responsive Design */
+  @media (min-width: 768px) {
+    .about-page {
+      padding: 3rem 2rem;
+    }
+
+    .hero-content {
+      flex-direction: row;
+      text-align: left;
+      gap: 3rem;
+    }
+
+    .portrait {
+      width: 220px;
+      height: 220px;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .timeline {
+      padding-left: 3rem;
+    }
+
+    .timeline-item {
+      padding-left: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .about-page {
+      padding: 4rem 3rem;
+    }
+
+    .portrait {
+      width: 250px;
+      height: 250px;
+    }
+
+    section {
+      margin-bottom: 5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .timeline-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .education-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

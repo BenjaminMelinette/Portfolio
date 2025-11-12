@@ -11,11 +11,10 @@ tags:
   - E-Commerce
   - CSS
   - UI / UX
+projectUrl: "https://benjaminmelinette.github.io/Burgundy_Buns/"
 ---
 
 J'ai développé le site web Burgundy Buns pour un projet personnel, qui est un site e-commerce fictif dédié à la vente de produits de burgers. Le site a été entièrement développé en Angular, en mettant l'accent sur un design responsive et une expérience utilisateur fluide. Un design a été réalise dans un premier temps sur figma afin de mettre les idées en oeuvre et de simplifier le développement.
-
-Vous pouvez visiter le site hébergé via un github pages ici : <a href="https://benjaminmelinette.github.io/Burgundy_Buns/">Burgundy Buns</a>
 
 Et voici une vidéo de présentation du site Burgundy Buns :
 

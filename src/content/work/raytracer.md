@@ -10,6 +10,7 @@ tags:
   - Raytracing
   - C++
   - Maths
+
 ---
 
 Ce projet a été réalisé lors de ma deuxième année à Épitech en collaboration avec trois autres développeurs. En seulement 4 semaines, nous avons implémenté un raytracer basique en C++. L'objectif principal était de faire des recherches sur le fonctionnement d'un moteur de rendu puis d'implémenter ce moteur capable de simuler la lumière interagissant avec des objets dans un environnement 3D simple.
