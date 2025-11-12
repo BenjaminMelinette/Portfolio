@@ -273,29 +273,6 @@
         ease: 'power3.out'
     });
 
-    // Hover effect sur les cartes projets (désactivé sur mobile)
-    if (!isMobile) {
-        gsap.utils.toArray('.projects-section li').forEach((card: any) => {
-        card.addEventListener('mouseenter', () => {
-            gsap.to(card, {
-            y: -8,
-            scale: 1.02,
-            duration: 0.3,
-            ease: 'power2.out'
-            });
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            gsap.to(card, {
-            y: 0,
-            scale: 1,
-            duration: 0.3,
-            ease: 'power2.out'
-            });
-        });
-        });
-    }
-
     // Animation des benefit cards
     gsap.utils.toArray('.benefit-card').forEach((card: any, index: number) => {
         gsap.from(card, {
