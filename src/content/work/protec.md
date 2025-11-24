@@ -9,14 +9,11 @@ tags:
   - Angular
   - NestJS
   - CI / CD
-
+gallery:
+  - src: /Portfolio/assets/forms_protec.png
+    alt: ''
+  - src: /Portfolio/assets/protec-form.png
+    alt: ''
 ---
 
 Ce projet réalisé en Duo avec Elias Fassella est un site réalisé en Angular pour le front-end et NestJS pour le back-end. Personellement, j'ai pu travaillé sur plusieurs fonctionnalités tels que la protection du site, la gestion du rôle de l'utilisateur pour la navigation dans le site, un tableau des stocks en temps réel ou encore un gestionnaire de formulaire que l'on peut voir ci-dessous :
-
-<br>
-
-<center>
-  <img src="/Portfolio/assets/forms_protec.png">
-  <img src="/Portfolio/assets/protec-form.png">
-</center>

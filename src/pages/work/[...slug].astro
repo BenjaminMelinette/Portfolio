@@ -5,16 +5,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 import ContactCTA from '../../components/ContactCTA.astro';
 import Hero from '../../components/Hero.astro';
-import Icon from '../../components/Icon.astro';
 import Pill from '../../components/Pill.astro';
+import { Icon } from 'astro-icon';
 
 interface Props {
 	entry: CollectionEntry<'work'>;
 }
 
-// This is a dynamic route that generates a page for every Markdown file in src/content/
-// Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
-// https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
 export async function getStaticPaths() {
 	const work = await getCollection('work');
 	return work.map((entry) => ({
@@ -25,6 +22,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+const hasGallery = entry.data.gallery && entry.data.gallery.length > 0;
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
@@ -33,43 +31,231 @@ const { Content } = await entry.render();
 			<header class="project-header">
 				<div class="wrapper">
 					<a class="back-link" href="/Portfolio/work/">
-					<Icon icon="arrow-left" /> Projets
-					</a>
+            <span class="icon-wrapper">
+              <Icon name="mdi:arrow-left" size="1.6rem" />
+            </span>
+            <span class="text">Projets</span>
+          </a>
+
+
 
 					<div class="hero-content">
-					<Hero title={entry.data.title} align="start">
-						<p class="description">{entry.data.description}</p>
-					</Hero>
+						<Hero title={entry.data.title} align="start">
+							<p class="description">{entry.data.description}</p>
+						</Hero>
 
-					<div class="actions-row">
-						<div class="tags">
-						{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
-						</div>
+						<div class="actions-row">
+							<div class="tags">
+								{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
+							</div>
 
-						{entry.data.projectUrl && (
-						<div class="visit-project">
-							<a href={entry.data.projectUrl} target="_blank" rel="noopener noreferrer">
-							Visiter le projet
-							</a>
+							{entry.data.projectUrl && (
+								<div class="visit-project">
+									<a href={entry.data.projectUrl} target="_blank" rel="noopener noreferrer">
+										Visiter le projet
+									</a>
+								</div>
+							)}
 						</div>
-						)}
-					</div>
 					</div>
 				</div>
 			</header>
-
 
 			<main class="wrapper">
 				<div class="stack gap-10 content">
 					<div class="content">
 						<Content />
 					</div>
+
+					{hasGallery && (
+						<div class="gallery-section">
+							<h2>Aperçu du projet</h2>
+							
+							<div class="carousel-container">
+								<div class="carousel-wrapper">
+									<button class="carousel-btn carousel-btn-prev" id="prevBtn">
+										<Icon name="mdi:arrow-left" />
+									</button>
+									
+									<div class="carousel-slides">
+										{entry.data.gallery.map((image, index) => (
+											<div class={`carousel-slide ${index === 0 ? 'active' : ''}`} data-index={index}>
+												<img src={image.src} alt={image.alt} loading="lazy" />
+												<div class="carousel-caption">{image.alt}</div>
+											</div>
+										))}
+									</div>
+									
+									<button class="carousel-btn carousel-btn-next" id="nextBtn">
+										<Icon name="mdi:arrow-right" />
+									</button>
+								</div>
+								
+								<div class="carousel-dots">
+									{entry.data.gallery.map((_, index) => (
+										<span class={`dot ${index === 0 ? 'active' : ''}`} data-index={index}></span>
+									))}
+								</div>
+							</div>
+
+							<!-- Lightbox -->
+							<div id="lightbox" class="lightbox">
+								<button class="lightbox-close" id="lightboxClose">
+									<Icon name="mdi:close" />
+								</button>
+								
+								<button class="lightbox-btn lightbox-btn-prev" id="lightboxPrev">
+									<Icon name="mdi:arrow-left" />
+								</button>
+								
+								<div class="lightbox-content">
+									<img id="lightbox-img" src="" alt="" />
+									<div id="lightbox-caption" class="lightbox-caption"></div>
+								</div>
+								
+								<button class="lightbox-btn lightbox-btn-next" id="lightboxNext">
+									<Icon name="mdi:arrow-right" />
+								</button>
+							</div>
+						</div>
+					)}
 				</div>
 			</main>
 		</div>
 		<ContactCTA />
 	</div>
 </BaseLayout>
+
+<script define:vars={{ gallery: entry.data.gallery || [] }}>
+if (gallery && gallery.length > 0) {
+	let currentSlideIndex = 0;
+	let currentLightboxIndex = 0;
+
+	// Carousel navigation
+	function moveSlide(direction) {
+		const slides = document.querySelectorAll('.carousel-slide');
+		const dots = document.querySelectorAll('.dot');
+		
+		if (!slides.length) return;
+		
+		slides[currentSlideIndex].classList.remove('active');
+		dots[currentSlideIndex].classList.remove('active');
+		
+		currentSlideIndex = (currentSlideIndex + direction + gallery.length) % gallery.length;
+		
+		slides[currentSlideIndex].classList.add('active');
+		dots[currentSlideIndex].classList.add('active');
+	}
+
+	function currentSlide(index) {
+		const slides = document.querySelectorAll('.carousel-slide');
+		const dots = document.querySelectorAll('.dot');
+		
+		if (!slides.length) return;
+		
+		slides[currentSlideIndex].classList.remove('active');
+		dots[currentSlideIndex].classList.remove('active');
+		
+		currentSlideIndex = index;
+		
+		slides[currentSlideIndex].classList.add('active');
+		dots[currentSlideIndex].classList.add('active');
+	}
+
+	// Lightbox functions
+	function openLightbox(index) {
+		currentLightboxIndex = index;
+		const lightbox = document.getElementById('lightbox');
+		const img = document.getElementById('lightbox-img');
+		const caption = document.getElementById('lightbox-caption');
+		
+		if (!lightbox || !img || !caption) return;
+		
+		img.src = gallery[index].src;
+		img.alt = gallery[index].alt;
+		caption.textContent = gallery[index].alt;
+		
+		lightbox.classList.add('active');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeLightbox() {
+		const lightbox = document.getElementById('lightbox');
+		if (!lightbox) return;
+		
+		lightbox.classList.remove('active');
+		document.body.style.overflow = '';
+	}
+
+	function moveLightbox(direction) {
+		currentLightboxIndex = (currentLightboxIndex + direction + gallery.length) % gallery.length;
+		
+		const img = document.getElementById('lightbox-img');
+		const caption = document.getElementById('lightbox-caption');
+		
+		if (!img || !caption) return;
+		
+		img.style.opacity = '0';
+		setTimeout(() => {
+			img.src = gallery[currentLightboxIndex].src;
+			img.alt = gallery[currentLightboxIndex].alt;
+			caption.textContent = gallery[currentLightboxIndex].alt;
+			img.style.opacity = '1';
+		}, 150);
+	}
+
+	// Event listeners
+	const prevBtn = document.getElementById('prevBtn');
+	const nextBtn = document.getElementById('nextBtn');
+	const lightboxClose = document.getElementById('lightboxClose');
+	const lightboxPrev = document.getElementById('lightboxPrev');
+	const lightboxNext = document.getElementById('lightboxNext');
+	const lightbox = document.getElementById('lightbox');
+
+	if (prevBtn) prevBtn.addEventListener('click', () => moveSlide(-1));
+	if (nextBtn) nextBtn.addEventListener('click', () => moveSlide(1));
+
+	// Dots navigation
+	document.querySelectorAll('.dot').forEach((dot, index) => {
+		dot.addEventListener('click', () => currentSlide(index));
+	});
+
+	// Slides click to open lightbox
+	document.querySelectorAll('.carousel-slide').forEach((slide, index) => {
+		slide.addEventListener('click', () => openLightbox(index));
+	});
+
+	// Lightbox controls
+	if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+	if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => {
+		e.stopPropagation();
+		moveLightbox(-1);
+	});
+	if (lightboxNext) lightboxNext.addEventListener('click', (e) => {
+		e.stopPropagation();
+		moveLightbox(1);
+	});
+	if (lightbox) {
+		lightbox.addEventListener('click', (e) => {
+			if (e.target === lightbox) closeLightbox();
+		});
+	}
+
+	// Keyboard support
+	document.addEventListener('keydown', (e) => {
+		const lightboxActive = lightbox?.classList.contains('active');
+		
+		if (lightboxActive) {
+			if (e.key === 'Escape') closeLightbox();
+			if (e.key === 'ArrowLeft') moveLightbox(-1);
+			if (e.key === 'ArrowRight') moveLightbox(1);
+		} else {
+			if (e.key === 'ArrowLeft') moveSlide(-1);
+			if (e.key === 'ArrowRight') moveSlide(1);
+		}
+	});
+}
+</script>
 
 <style>
 /* ==============================
@@ -81,32 +267,38 @@ header {
 }
 
 .back-link {
-  display: none;
+  display: inline-flex;
   margin-bottom: 1rem;
   color: var(--link-color);
   font-weight: 500;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--link-hover-color);
 }
 
 .hero-content {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  max-width: 100%; /* permet de ne jamais dépasser l'écran */
+  max-width: 100%;
   margin-inline: auto;
-  padding-inline: 1rem; /* padding latéral pour mobile */
+  padding-inline: 1rem;
 }
 
 .description {
   font-size: clamp(1rem, 4vw, 1.8rem);
   line-height: 1.6;
   text-align: center;
-  max-width: 100%; /* jamais dépasser l'écran */
-  word-wrap: break-word; /* casse le texte si trop long */
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .actions-row {
   display: flex;
-  flex-direction: column; /* vertical sur mobile */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -145,7 +337,6 @@ header {
    Main Content
    ============================== */
 .content {
-  max-width: 1000px;
   margin-inline: auto;
   padding: 1rem;
 }
@@ -198,6 +389,266 @@ header {
 }
 
 /* ==============================
+   Gallery Section
+   ============================== */
+.gallery-section {
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.gallery-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: var(--text-3xl);
+  color: var(--gray-100);
+}
+
+/* Carousel */
+.carousel-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.carousel-slides {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.carousel-slide img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;      /* show entire image */
+  display: block;
+  max-height: 80vh;         /* optional: prevent it from being too tall */
+  margin: 0 auto;           /* center horizontally */
+}
+
+.carousel-caption {
+  position: absolute;
+  display: none;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: var(--gray-0);
+  padding: 4rem 2rem 1.5rem;
+  font-size: var(--text-lg);
+  text-align: center;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--accent-regular);
+  color: var(--gray-0);
+  border: none;
+  width: 64px;
+  height: 64px;
+  font-size: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--theme-transition);
+  z-index: 2;
+  box-shadow: var(--shadow-lg);
+}
+
+.carousel-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.carousel-btn-prev {
+  left: 2rem;
+}
+
+.carousel-btn-next {
+  right: 2rem;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gray-400);
+  cursor: pointer;
+  transition: all var(--theme-transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.dot.active {
+  background: var(--accent-regular);
+  transform: scale(1.4);
+  box-shadow: 0 0 12px var(--accent-overlay);
+}
+
+.dot:hover {
+  background: var(--accent-dark);
+  transform: scale(1.3);
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.97);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-content {
+  max-width: 98vw;
+  max-height: 98vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: scaleIn 0.3s ease;
+}
+
+.lightbox-content img {
+  max-width: 98vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  transition: opacity 0.15s ease;
+}
+
+.lightbox-caption {
+  color: var(--gray-0);
+  font-size: var(--text-xl);
+  margin-top: 2rem;
+  text-align: center;
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: var(--accent-regular);
+  color: var(--gray-0);
+  border: none;
+  width: 64px;
+  height: 64px;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--theme-transition);
+  z-index: 10001;
+  box-shadow: var(--shadow-lg);
+}
+
+.lightbox-close:hover {
+  background: var(--accent-dark);
+  transform: rotate(90deg) scale(1.15);
+}
+
+.lightbox-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--accent-regular);
+  color: var(--gray-0);
+  border: none;
+  width: 64px;
+  height: 64px;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--theme-transition);
+  z-index: 10000;
+  box-shadow: var(--shadow-lg);
+}
+
+.lightbox-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-50%) scale(1.2);
+}
+
+.lightbox-btn-prev {
+  left: 2rem;
+}
+
+.lightbox-btn-next {
+  right: 2rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==============================
    Media Queries
    ============================== */
 @media (min-width: 50em) {
@@ -215,7 +666,7 @@ header {
   }
 
   .actions-row {
-    flex-direction: row; /* horizontal sur desktop */
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
@@ -232,6 +683,14 @@ header {
   .content {
     padding: 0;
   }
+
+  .carousel-slides {
+    aspect-ratio: 21 / 9;
+  }
+
+  .carousel-caption {
+    font-size: var(--text-xl);
+  }
 }
 
 @media (min-width: 80em) {
@@ -242,6 +701,57 @@ header {
   .visit-project a {
     font-size: 1.25rem;
     padding: 1rem 2.25rem;
+  }
+
+  .carousel-slides {
+    aspect-ratio: 21 / 8;
+  }
+}
+
+@media (max-width: 49.99em) {
+  .carousel-btn {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .carousel-btn-prev {
+    left: 1rem;
+  }
+  
+  .carousel-btn-next {
+    right: 1rem;
+  }
+  
+  .lightbox-btn,
+  .lightbox-close {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .lightbox-btn-prev {
+    left: 1rem;
+  }
+  
+  .lightbox-btn-next {
+    right: 1rem;
+  }
+  
+  .lightbox-close {
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .carousel-caption {
+    font-size: var(--text-base);
+    padding: 3rem 1.5rem 1rem;
+  }
+
+  .lightbox-caption {
+    font-size: var(--text-md);
+  }
+
+  .carousel-slides {
+    aspect-ratio: 16 / 10;
   }
 }
 </style>

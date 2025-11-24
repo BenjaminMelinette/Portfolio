@@ -155,6 +155,13 @@ declare module 'astro:content' {
   collection: "work";
   data: InferEntrySchema<"work">
 } & { render(): Render[".md"] };
+"monitoring.md": {
+	id: "monitoring.md";
+  slug: "monitoring";
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">
+} & { render(): Render[".md"] };
 "nested/rpg.md": {
 	id: "nested/rpg.md";
   slug: "nested/rpg";
