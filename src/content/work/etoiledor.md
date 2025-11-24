@@ -21,3 +21,7 @@ Le site a été entièrement réalisé avec **Astro**, en mettant l’accent sur
 Chaque section a été pensée pour fournir un contenu clair et accessible, favorisant la visibilité du site et l’expérience utilisateur.
 
 Ce projet m’a permis d’expérimenter des techniques de SEO moderne tout en créant un site vitrine professionnel et fonctionnel.
+
+<br>
+
+<img src="/Portfolio/assets/etoiledor.png">
