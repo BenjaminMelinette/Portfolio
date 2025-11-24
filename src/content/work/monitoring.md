@@ -1,7 +1,7 @@
 ---
 title: Monitoring
 publishDate: 2025-11-12
-img: /Portfolio/assets/Monitoring_1_cleanup.png
+img: /Portfolio/assets/Monitoring_1.png
 img_alt: Interface de monitoring applicatif (données anonymisées)
 description: |
   Site de monitoring d'application pour superviser performances, erreurs et logs, avec analyse comparée dans le temps.
